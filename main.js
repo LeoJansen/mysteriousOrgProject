@@ -38,10 +38,38 @@ const returnRandBase = () => {
                     break;
               };
           },
+        compareDNA(pAequor) {
+          let coincidentBases = [];
+          let numCoincidentBases = 0;
+          for (let i = 0; i < 15 ; i++) {
+            let j = -1;
+            j++
+            if (this._dna[i] === pAequor._dna[i]) {
+              coincidentBases.push([[i] , this._dna[i]]);
+              numCoincidentBases++
+            };
+          };
+          console.log(" ")
+          console.log("... The scanning test were completed...")
+          console.log(" ")
+          console.log(" Coincident bases are listed below ") 
+          console.log(" ")
+          console.log(coincidentBases);
+          console.log(" ")
+          console.log(" ")
+          let percentageResult  = numCoincidentBases / 15 * 100
+          console.log("Match percentage = " + percentageResult + '%')
+          console.log(" ")
+          console.log(" ")
+        }, 
       };
   };
 
+let newSensientBeing = pAequorFactory(123,mockUpStrand());
+let anotherSensientBeing = pAequorFactory(321,mockUpStrand());
 
-  //let newSensientBeings = pAequorFactory(123, mockUpStrand());
-  //console.log(newSensientBeings);
+console.log(newSensientBeing);
+console.log(anotherSensientBeing);
+
+newSensientBeing.compareDNA(anotherSensientBeing);
 
