@@ -72,23 +72,16 @@ const returnRandBase = () => {
           console.log(" ")
         },
         
-        
+        // Step 6 Project - willLikelySurvive() checks if DNA array is made up at least 60% of 'C' ou 'G'
+
         willLikelySurvive() {
           let occurrenciesDNA = 0;
           for (let i = 0; i < this._dna.length; i++) {
-            console.log('  ')
-            console.log('               i = ' + i + '            occurrenciesDNA = ' + occurrenciesDNA);
-            console.log('  ')
-            console.log('this._dna[i] =   ' + this._dna[i])
-            console.log('  ')
             if (this._dna[i] == 'C' || this._dna[i] == 'G' ) {
              occurrenciesDNA++
-             console.log('occurrencies DNA added');
-             console.log('  ')
             };
           }
           let percentageResult = occurrenciesDNA / 15
-          console.log('percentageResult =' + percentageResult)
           if (percentageResult >= 0.6 ) {
             return true;
           } else {
@@ -98,11 +91,20 @@ const returnRandBase = () => {
       };
   };
 
+  let pAequorInstances = [];
+
+  for (let i = 1 ; i <= 30; i++ ){
+    let numSpecies = Math.floor(Math.random() * 99999);
+    pAequorInstances.push(pAequorFactory(numSpecies,mockUpStrand()));
+  }
+  console.log(pAequorInstances);
+
+
+  /* test .willLikeSurvive
   let newSensientBeing = pAequorFactory(123,mockUpStrand());
   let anotherSensientBeing = pAequorFactory(321,mockUpStrand());
-  
-  console.log(newSensientBeing._dna);
   newSensientBeing.willLikelySurvive()
+  */ 
   
 
 
