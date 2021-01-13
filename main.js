@@ -17,10 +17,12 @@ const returnRandBase = () => {
       return {
           _specimenNum: specimenNum,
           _dna: dna,
+
+          // Step 4 from project - randomly select a base in the object's dna property and changing the current base to a different base.
+          
           mutate () {
               let indexBaseChanged = Math.floor((Math.random() * dna.length));
-              let initArray = dna.slice(0,indexBaseChanged)
-              let finalArray = dna.slice((indexBaseChanged + 1),dna.length)
+              let newArray = [...this._dna];             
               let oldBase = dna[indexBaseChanged];
               let newBase;
               switch (oldBase) {
@@ -37,7 +39,14 @@ const returnRandBase = () => {
                     newBase = 'C';
                     break;
               };
+
+              newArray.splice(indexBaseChanged,1,newBase)
+
+              return newArray;
           },
+
+        // Step 5 from project - compare Dna Array and log coincident percentage 
+        
         compareDNA(pAequor) {
           let coincidentBases = [];
           let numCoincidentBases = 0;
@@ -61,15 +70,53 @@ const returnRandBase = () => {
           console.log("Match percentage = " + percentageResult + '%')
           console.log(" ")
           console.log(" ")
+        },
+        
+        
+        willLikelySurvive() {
+          let occurrenciesDNA = 0;
+          for (let i = 0; i < this._dna.length; i++) {
+            console.log('  ')
+            console.log('               i = ' + i + '            occurrenciesDNA = ' + occurrenciesDNA);
+            console.log('  ')
+            console.log('this._dna[i] =   ' + this._dna[i])
+            console.log('  ')
+            if (this._dna[i] == 'C' || this._dna[i] == 'G' ) {
+             occurrenciesDNA++
+             console.log('occurrencies DNA added');
+             console.log('  ')
+            };
+          }
+          let percentageResult = occurrenciesDNA / 15
+          console.log('percentageResult =' + percentageResult)
+          if (percentageResult >= 0.6 ) {
+            return true;
+          } else {
+            return false;
+          };
         }, 
       };
   };
 
+  let newSensientBeing = pAequorFactory(123,mockUpStrand());
+  let anotherSensientBeing = pAequorFactory(321,mockUpStrand());
+  
+  console.log(newSensientBeing._dna);
+  newSensientBeing.willLikelySurvive()
+  
+
+
+
+
+ /*  test .mutate()
 let newSensientBeing = pAequorFactory(123,mockUpStrand());
 let anotherSensientBeing = pAequorFactory(321,mockUpStrand());
+newSensientBeing.mutate()
+*/
 
+
+/*
 console.log(newSensientBeing);
 console.log(anotherSensientBeing);
-
 newSensientBeing.compareDNA(anotherSensientBeing);
-
+*/
